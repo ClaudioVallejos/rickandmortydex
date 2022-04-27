@@ -23,7 +23,7 @@ app.use(cors({
     origin: config.ORIGIN
 }))
 
-app.use('/user', userRouter)
+app.use('/api/users', userRouter)
 app.listen(config.PORT, () => {
     console.log(`running on: http://localhost:${config.PORT}`)
 })

@@ -33,7 +33,11 @@
 
 <script setup>
   import { reactive } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { register } from '../api.js'
   import '../assets/signin.css'
+
+  const router = useRouter();
 
   const data = reactive({
     username:'',
@@ -42,7 +46,10 @@
     isConfirmedPass:''
   })
 
-  const submit = () => {
-    console.log(data)
+  const submit = async () => {
+    const response = await register(data)
+    if (response.status === 201) {
+      router.push('/login')
+    }
   }
 </script>

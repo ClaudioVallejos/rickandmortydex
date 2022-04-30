@@ -1,7 +1,3 @@
-<script setup>
-  import Card from "@/components/Card.vue"
-</script>
-
 <template> 
     <div class="album py-5 bg-light">
         <div class="container">
@@ -13,3 +9,23 @@
         </div>
     </div>
 </template>
+
+<script setup>
+  import Card from "@/components/Card.vue"
+  import { onMounted } from 'vue'
+  import { getUser } from '../api.js'
+  import { useUserStore } from '@/stores/user.js'
+
+  const userStore = useUserStore()
+
+  onMounted(async () => {
+    const res = await getUser();
+    const user = await res.content;
+
+    if(res.status === 200){
+      userStore.login({name: user.name})
+    }
+  })
+
+
+</script>

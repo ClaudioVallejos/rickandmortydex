@@ -2,7 +2,6 @@
 <main class="form-signin">
   <form @submit.prevent="submit">
     <h1 class="h3 mb-3 fw-normal">Inicia Sesión!</h1>
-
     <div class="form-floating">
       <input v-model="data.email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
       <label for="floatingInput">Correo Electrónico</label>
@@ -17,6 +16,11 @@
         <input type="checkbox" value="remember-me"> Recuerdame
       </label>
     </div>
+    <div class="mb-3">
+      <label>
+        ¿Aún no tienes una cuenta? <RouterLink to="/register">Registrate</RouterLink>
+      </label>
+    </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Sesión</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
   </form>
@@ -24,22 +28,25 @@
 </template>
 
 <script setup>
-  import '../assets/signin.css'
+  import '@/assets/signin.css'
   import { reactive } from 'vue'
-  import { useRouter } from 'vue-router'
+  import { useRouter, RouterLink } from 'vue-router'
   import { login } from '../api.js'
-  import '../assets/signin.css'
+  import { useUserStore } from '@/stores/user.js'
 
+  const userStore = useUserStore()
   const router = useRouter();
 
   const data = reactive({
     email:'',
     password:''
   })
-
+  console.log()
   const submit = async () => {
     const response = await login(data)
     if (response.status === 200) {
+      const name = response.content.name
+      userStore.login({name})
       router.push('/')
     }
   }

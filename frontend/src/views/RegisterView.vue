@@ -4,7 +4,7 @@
     <h1 class="h3 mb-3 fw-normal">Registro</h1>
 
     <div class="form-floating mb-2">
-      <input v-model="data.username" type="text" class="form-control" id="floatingInput" placeholder="Nombre" required>
+      <input v-model="data.name" type="text" class="form-control" id="floatingInput" placeholder="Nombre" required>
       <label for="floatingInput">Nombre y Apellido</label>
     </div>
     <div class="form-floating mb-2">
@@ -25,6 +25,11 @@
         <input type="checkbox" value="remember-me"> Recuerdame
       </label>
     </div>
+        <div class="mb-3">
+      <label>
+        ¿Ya tienes una cuenta? <RouterLink to="/login">Inicia sesión</RouterLink>
+      </label>
+    </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Registrar</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
   </form>
@@ -40,7 +45,7 @@
   const router = useRouter();
 
   const data = reactive({
-    username:'',
+    name:'',
     email:'',
     password:'',
     isConfirmedPass:''

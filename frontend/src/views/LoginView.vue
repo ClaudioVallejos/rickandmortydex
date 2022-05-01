@@ -41,12 +41,11 @@
     email:'',
     password:''
   })
-  console.log()
   const submit = async () => {
     const response = await login(data)
     if (response.status === 200) {
-      const name = response.content.name
-      userStore.login({name})
+      const username = response.content.name
+      userStore.login({username})
       router.push('/')
     }
   }

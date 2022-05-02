@@ -1,5 +1,5 @@
 <template>
-<main class="form-signin">
+<main class="form-signin pt-5 mt-5">
   <form @submit.prevent="submit">
     <h1 class="h3 mb-3 fw-normal">Registro</h1>
 
@@ -31,7 +31,7 @@
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Registrar</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+    <p class="mt-5 mb-3 text-muted">&copy; 2022–2023</p>
   </form>
 </main>
 </template>

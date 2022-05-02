@@ -15,10 +15,6 @@
       <input v-model="data.password" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" require>
       <label for="floatingPassword">Contraseña</label>
     </div>
-    <div class="form-floating">
-      <input v-model="data.isConfirmedPass" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" require>
-      <label for="floatingPassword">Confirma tu contraseña</label>
-    </div>
 
     <div class="checkbox mb-3">
       <label>

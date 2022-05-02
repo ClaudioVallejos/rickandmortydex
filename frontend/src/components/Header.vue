@@ -1,35 +1,36 @@
 <script setup>
-  import { RouterLink } from "vue-router"
+  import { RouterLink, useRouter } from "vue-router"
   import { storeToRefs  } from 'pinia'
   import SearchBar from '@/components/searchBar.vue'
   import { useUserStore } from '@/stores/user.js'
+  import { useRickAndMortyStore } from '@/stores/rickandmorty.js'
   import { logout } from '@/api.js'
 
   const userStore = useUserStore()
+  const rickAndMortyStore = useRickAndMortyStore()
+  const router = useRouter()
+
   const { username } = storeToRefs(userStore)
 
   async function handleLogout(){
-    const wantToLogout = confirm('¿Quieres cerrar sesión?');
+    const wantToLogout = confirm('¿Estás seguro que quieres cerrar sesión?');
     if(wantToLogout){
       userStore.logout()
-      logout();
+      logout()
+      router.push('/')
     }
   }
 
-  const handlerSearch = (e) => {
-    const searchText = e.searchText
+  const handlerTextChange = (e) => {
+    rickAndMortyStore.setSearch(e.searchText)
   }
 
 </script>
 
 <template>
   <header>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="navbar navbar-dark bg-dark shadow-sm fixed-top">
       <div class="container">
-        <!-- <RouterLink to="/register" class="navbar-brand d-flex align-items-center">
-        
-           <span>Register</span>
-        </RouterLink> -->
         <RouterLink v-if="username" to="/favorites" class="navbar-brand d-flex align-items-center">
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
           width="48" height="48"
@@ -48,7 +49,7 @@
            <span>Galeria</span>
         </RouterLink>
 
-        <SearchBar @textChange="handlerSearch"/>
+        <SearchBar @textChange="handlerTextChange"/>
 
         <!-- if user-->
         <div v-if="username" class="navbar-brand d-flex align-items-center">

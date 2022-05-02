@@ -14,7 +14,7 @@ userRouter.get('/user', expressAssyncHandler(async (req, res) => {
         if (!cookie || !verified) {
             return res.status(401).send({ status: 400, message: 'No autorizado', error: true })
         }
-        const authUser = await User.findOne({ _id: verified._id })
+        const authUser = await User.findOne({ _id: verified._id }).populate('favorites', {userId: 0})
         const { password, ...content } = await authUser.toJSON()
         res.status(200).send({ status: 200, message: 'success!', content: content })
     } catch (err) {

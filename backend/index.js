@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import config from './config.js'
 import userRouter from './routers/userRouter.js'
+import characterRouter from './routers/characterRouter.js'
 
 mongoose.connect(config.MONGODB_URL, {
     useNewUrlParser: true,
@@ -24,6 +25,7 @@ app.use(cors({
 }))
 
 app.use('/api/users', userRouter)
+app.use('/api/characters', characterRouter)
 app.listen(config.PORT, () => {
     console.log(`running on: http://localhost:${config.PORT}`)
 })

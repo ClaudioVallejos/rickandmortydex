@@ -11,3 +11,9 @@ rick and morty stuff
 6. en la consola de comandos de la carpeta "frontend" ejecuta -> npm run dev
 7. en la consola de comandos de la carpeta "backemd" ejecuta -> npm start
 8. abre el navegador de tu preferencia, en : http://localhost:3000/ estara funcionando tu app!
+
+########################################## IMPORTANTE ######################################################
+######                                                                                          ############
+######                     debes estar en la rama "develop" o "production"                      ############
+######                                                                                          ############
+############################################################################################################
